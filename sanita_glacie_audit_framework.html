@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sanita Group × Glacie Health — Patient Journey & BVQS Audit Checklists</title>
+<style>
+/* No external dependencies — fully self-contained */
+:root{
+  --t1:#111827;--t2:#374151;--t3:#6b7280;--t4:#9ca3af;
+  --bg1:#ffffff;--bg2:#f9fafb;--bg3:#f3f4f6;
+  --bd2:rgba(0,0,0,.12);--bd3:rgba(0,0,0,.07);
+  --inf-t:#1d4ed8;--inf-bg:#eff6ff;--inf-bd:#bfdbfe;
+  --font:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;
+  --bvqs:#155a2e;--bvqs-bg:rgba(22,101,52,.12);--bvqs-bd:rgba(22,101,52,.3);
+}
+@media(prefers-color-scheme:dark){:root{
+  --t1:#f9fafb;--t2:#e5e7eb;--t3:#9ca3af;--t4:#6b7280;
+  --bg1:#111827;--bg2:#1f2937;--bg3:#374151;
+  --bd2:rgba(255,255,255,.15);--bd3:rgba(255,255,255,.07);
+  --inf-t:#93c5fd;--inf-bg:#1e3a5f;--inf-bd:#1d4ed8;
+  --bvqs:#86efac;--bvqs-bg:rgba(22,101,52,.22);--bvqs-bd:rgba(22,101,52,.45);
+}}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);background:var(--bg1);color:var(--t1);max-width:900px;margin:0 auto;padding:28px 22px 60px;line-height:1.5}
+button{font-family:inherit;cursor:pointer;outline:none}
+.hdr{padding-bottom:16px;border-bottom:1px solid var(--bd3);margin-bottom:0}
+.tag{font-size:10px;font-weight:600;color:var(--t4);letter-spacing:.9px;text-transform:uppercase;margin-bottom:4px}
+.hdr-title{font-size:19px;font-weight:600;color:var(--t1)}
+.badge-demo{background:var(--bvqs-bg);color:var(--bvqs);border:0.5px solid var(--bvqs-bd);padding:1px 7px;border-radius:8px;font-size:10px;font-weight:600}
+.ph-tabs{display:flex;gap:4px;padding:12px 0 10px;overflow-x:auto;scrollbar-width:none}
+.ph-tabs::-webkit-scrollbar{display:none}
+.ptab{display:flex;flex-direction:column;align-items:center;padding:7px 11px;border-radius:8px;border:0.5px solid var(--bd3);background:var(--bg2);min-width:74px;cursor:pointer;transition:all .15s}
+.ptab.on{background:var(--inf-bg);border-color:var(--inf-bd)}
+.ptab .n{font-size:9px;font-weight:600;color:var(--t4)}
+.ptab .l{font-size:10.5px;font-weight:500;color:var(--t3);text-align:center;line-height:1.3}
+.ptab.on .n,.ptab.on .l{color:var(--inf-t)}
+.phd{padding:10px 14px;background:var(--bg2);border-radius:9px;margin-bottom:10px;border:0.5px solid var(--bd3)}
+.stcard{padding:11px 13px;border-radius:8px;margin-bottom:7px;border-left:3px solid transparent;border-top:0.5px solid transparent;border-right:0.5px solid transparent;border-bottom:0.5px solid transparent}
+.stcard.na{opacity:.32;border-left-color:var(--bd2)!important;background:transparent!important;border-color:var(--bd3)!important}
+.st-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;margin-top:4px}
+.bvqs-btn{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:600;padding:3px 9px 3px 8px;border-radius:10px;cursor:pointer;border:0.5px solid var(--bvqs-bd);background:var(--bvqs-bg);color:var(--bvqs);margin:3px 3px 0 0;transition:all .15s}
+.bvqs-btn:hover{filter:brightness(.9)}
+.bvqs-btn.open{filter:brightness(.85)}
+.kpmg-tag{display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:500;padding:3px 8px;border-radius:10px;border:0.5px solid var(--bd2);background:var(--bg2);color:var(--t3);margin:3px 3px 0 0}
+.rec-tag{font-size:9.5px;color:var(--t4);border:0.5px solid var(--bd3);padding:2px 7px;border-radius:10px;margin-top:3px;display:inline-block;font-style:italic}
+.cl-panel{margin-top:10px;border-radius:8px;overflow:hidden;border:0.5px solid rgba(22,101,52,.3);background:var(--bg1)}
+.cl-hdr{padding:10px 14px;background:rgba(22,101,52,.09);display:flex;align-items:center;justify-content:space-between;border-bottom:0.5px solid rgba(22,101,52,.2)}
+.cl-prog-bar{height:4px;background:var(--bg3);border-radius:2px;overflow:hidden;margin:8px 14px}
+.cl-prog-fill{height:100%;background:#166534;border-radius:2px;transition:width .3s}
+.cl-sec-lbl{font-size:9px;font-weight:600;letter-spacing:.6px;text-transform:uppercase;color:var(--t4);padding:10px 14px 4px}
+.cl-cat{padding:0 14px 8px}
+.cl-cat-title{font-size:11.5px;font-weight:600;color:var(--t3);margin-bottom:4px}
+.cl-item{display:flex;align-items:flex-start;gap:8px;padding:4px 0;cursor:pointer;user-select:none}
+.cl-cb{width:15px;height:15px;border-radius:3px;border:1.5px solid var(--bd2);flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center;transition:all .15s;background:var(--bg1)}
+.cl-cb.chk{background:#166534;border-color:#166534}
+.cl-cb.chk::after{content:'';display:block;width:5px;height:9px;border:2px solid white;border-top:none;border-left:none;transform:rotate(45deg) translate(-1px,-1px)}
+.cl-txt{font-size:12px;color:var(--t2);line-height:1.55}
+.cl-txt.chk{color:var(--t4);text-decoration:line-through}
+.astrip{margin-top:12px;padding:10px 14px;background:var(--bg2);border-radius:8px;border:0.5px solid var(--bd3);display:flex;gap:18px;flex-wrap:wrap;align-items:center}
+.adot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:4px}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <div class="tag">Sanita Group × Glacie Health</div>
+  <div class="hdr-title">Patient Journey &amp; BVQS Audit Checklists</div>
+  <div style="font-size:12.5px;color:var(--t3);margin-top:4px">
+    Click any <span class="badge-demo">&#10003; BVQS Audit</span> badge to expand treatment &amp; patient-specific audit checklists
+  </div>
+</div>
+
+<div class="ph-tabs" id="tabs"></div>
+<div class="phd" id="phd"></div>
+<div id="rows"></div>
+<div class="astrip" id="astrip"></div>
+
+<script>
+const phases=[
+  {id:'application', num:'01',label:'Application',   sub:'Initial Contact & Intake'},
+  {id:'diagnosis',   num:'02',label:'Diagnosis',     sub:'Pre-Assessment & Clinical Review'},
+  {id:'referral',    num:'03',label:'Referral',      sub:'Clinical Routing & Case Assignment'},
+  {id:'admission',   num:'04',label:'Admission',     sub:'Eligibility & Acceptance Criteria'},
+  {id:'pretreatment',num:'05',label:'Pre-Treatment', sub:'Planning & Preparation'},
+  {id:'treatment',   num:'06',label:'Treatment',     sub:'Surgery / Procedure'},
+  {id:'postop',      num:'07',label:'Post-Operative',sub:'Recovery & Monitoring'},
+  {id:'repatriation',num:'08',label:'Repatriation',  sub:'Follow-up & Case Closure'},
+];
+
+const stkh=[
+  {id:'source',     label:'Source Country',     sub:'UK / NHS Ecosystem',                ac:'#1e5ea8',bg:'rgba(30,94,168,.06)',
+   acts:{application:{t:'NHS waitlist identification. Patient self-referral via Glacie Health portal or GP referral pathway.',au:[],r:true},diagnosis:{t:'GP / specialist medical summary issued. NHS medical records transferred to Glacie Health with full patient consent.',au:['B'],r:true},referral:{t:'Formal cross-border referral letter issued. Signed patient consent to international treatment pathway.',au:[],r:true},admission:{t:'Regulatory compliance verification under UK post-EU cross-border healthcare directives.',au:['K'],r:true},pretreatment:{t:'GP clearance confirmation. Medication reconciliation. Pre-travel health check completed.',au:[],r:true},treatment:{t:'Optional remote monitoring access via Sanita Care App. UK emergency contact protocol active.',au:['B'],r:false},postop:{t:'NHS reintegration notification issued. Local GP briefing packet received from Sanita Group.',au:[],r:true},repatriation:{t:'GP receives full discharge summary. NHS care continuation plan activated. 90-day structured follow-up.',au:['B'],r:true}}},
+  {id:'glacie',     label:'Glacie Health',       sub:'Source Institution',               ac:'#0d6e4a',bg:'rgba(13,110,74,.06)',
+   acts:{application:{t:'Patient intake form. Initial eligibility pre-screening. NDA execution with Sanita Group. Case ID issued.',au:[],r:true},diagnosis:{t:'Clinical needs assessment. Lived-experience consultation. NHS clinician team review of case suitability.',au:['B'],r:true},referral:{t:'Formal clinical referral submission to Sanita Group. Patient case briefing document.',au:[],r:true},admission:{t:'Co-sign patient eligibility checklist. Confirm clinical suitability. Issue Glacie Health authorization letter.',au:['K'],r:true},pretreatment:{t:'Patient preparation guidance. Travel & logistics coordination. Multilingual case briefing.',au:[],r:true},treatment:{t:'Remote case oversight. Patient liaison throughout procedure. Real-time monitoring via Sanita Care App.',au:['B'],r:true},postop:{t:'Post-op check-in protocol. Complication flag pathway activation if required. Patient satisfaction recording.',au:['B'],r:true},repatriation:{t:'UK follow-up coordination. 30/60/90-day structured check-in protocol. Outcome reporting to NHS.',au:[],r:true}}},
+  {id:'sanita',     label:'Sanita Group',        sub:'Coordinator & Infrastructure',     ac:'#4f35a1',bg:'rgba(79,53,161,.06)',
+   acts:{application:{t:'Digital intake via Sanita Care App. Case ID generation. Clinical pathway assignment. KVKK + GDPR-compliant data handling.',au:[],r:true},diagnosis:{t:'Telemedicine pre-assessment. Specialist case review. Diagnostic pathway selection. Case risk stratification.',au:['B'],r:true},referral:{t:'Routing to optimal JCI-accredited provider. Treatment plan generation. Cost-transparent proposal to Glacie Health.',au:['B'],r:true},admission:{t:'Formal admission criteria verification. Document authentication. Financial & timeline proposal. Shield Protocol activated.',au:['B','K'],r:true},pretreatment:{t:'Full pre-op coordination. Anesthesia review. Surgical team assignment. BVQS case-specific audit launched.',au:['B'],r:true},treatment:{t:'Full treatment coordination. Sanita Assurance System active. BVQS real-time audit running. 24/7 case management.',au:['B'],r:true},postop:{t:'Post-op protocol management. Daily patient follow-up. Shield Protocol trigger assessment.',au:['B'],r:true},repatriation:{t:'Discharge summary preparation. Home-country GP briefing. Case closure. Final BVQS audit report generated.',au:['B','K'],r:true}}},
+  {id:'compliance', label:'Compliance',          sub:'Regulatory & Legal Alignment',     ac:'#b45309',bg:'rgba(180,83,9,.06)',
+   acts:{application:{t:'KVKK + GDPR consent forms obtained. Cross-border personal data transfer agreement signed.',au:[],r:true},diagnosis:{t:'Medical record transfer compliance verification under EU/UK data protection law.',au:['K'],r:true},referral:{t:'Cross-border treatment legal framework check. Bilateral healthcare agreement verification.',au:['K'],r:true},admission:{t:'JCI accreditation verification. Destination-country regulatory status audit. Treatment authorization.',au:['K'],r:true},pretreatment:{t:"Informed consent documentation in patient's language. Final treatment authorization.",au:['B'],r:true},treatment:{t:'Real-time surgical compliance monitoring. WHO checklist compliance. Adverse event reporting protocol.',au:['B'],r:true},postop:{t:'Complication reporting to regulatory bodies if thresholds are triggered.',au:['K'],r:false},repatriation:{t:'Final compliance sign-off. Complete audit trail closure. Regulatory outcome reporting.',au:['K'],r:true}}},
+  {id:'provider',   label:'Healthcare Provider', sub:'Hospital / Clinic (Destination)',  ac:'#9d1e47',bg:'rgba(157,30,71,.06)',
+   acts:{application:{t:'Not yet engaged at this stage.',au:[],r:false},diagnosis:{t:'Specialist case review upon referral from Sanita Group. Capacity and expertise confirmation.',au:['B'],r:true},referral:{t:'Provider acceptance confirmation. Expertise verification. Capacity slot allocation.',au:[],r:true},admission:{t:'Patient admission protocol. Pre-admission tests (blood work, imaging). Ward assignment.',au:['B'],r:true},pretreatment:{t:'Complete pre-op workup. Surgical team briefing. Timeout preparation. Infection control pre-check.',au:['B'],r:true},treatment:{t:'Clinical/surgical execution. WHO checklist adherence. Anesthesia protocol. HAI infection control.',au:['B'],r:true},postop:{t:"In-hospital recovery monitoring. Discharge planning. Post-op instructions in patient's language.",au:['B'],r:true},repatriation:{t:'Discharge documentation. Transfer of care summary. Follow-up prescription. 7-day post-discharge call.',au:['B'],r:true}}},
+  {id:'bvqs',       label:'BVQS',               sub:'Independent Medical Audit',        ac:'#166534',bg:'rgba(22,101,52,.07)',
+   acts:{application:{t:'Audit framework readiness confirmation. Collaboration audit scope defined.',au:[],r:false},diagnosis:{t:'Clinical pathway audit scope defined per case type. Diagnostic standards verification.',au:[],r:true},referral:{t:'Referral chain documentation audit. Provider credential pre-verification.',au:[],r:true},admission:{t:'Provider JCI accreditation verification. Facility safety standards audit.',au:[],r:true},pretreatment:{t:'Pre-op protocol audit. Team competency verification. Infection control readiness audit.',au:[],r:true},treatment:{t:'Real-time case audit (procedure-specific and patient-specific). Surgical safety checklist verification.',au:[],r:true},postop:{t:'Post-op care pathway audit. Complication management protocol review.',au:[],r:true},repatriation:{t:'Case closure audit. Final outcome audit report generated. Report available upon request.',au:[],r:true}}},
+  {id:'kpmg',       label:'KPMG',               sub:'Financial Audit & Governance',     ac:'#374151',bg:'rgba(55,65,81,.05)',
+   acts:{application:{t:'Financial agreement framework review. Fee transparency structure confirmed.',au:[],r:false},diagnosis:{t:'Not directly involved at this stage.',au:[],r:false},referral:{t:'Not directly involved at this stage.',au:[],r:false},admission:{t:'Cost transparency verification. Payment terms audit. Shield Protocol financial binding.',au:[],r:true},pretreatment:{t:'Not directly involved at this stage.',au:[],r:false},treatment:{t:'Transaction audit. Invoice verification. Real-time financial monitoring.',au:[],r:true},postop:{t:'Shield Protocol cost audit if triggered. Post-op cost tracking.',au:[],r:false},repatriation:{t:'Final financial audit. Cost reconciliation report. Outcome billing review.',au:[],r:true}}},
+  {id:'insurance',  label:'Insurance',           sub:'Complication Shield — up to \u20ac7,500', ac:'#9a3412',bg:'rgba(154,52,18,.06)',
+   acts:{application:{t:"Shield Protocol terms communicated to patient. Coverage scope explained in patient's language.",au:[],r:true},diagnosis:{t:'Case risk assessment. Coverage eligibility confirmation for procedure type.',au:[],r:true},referral:{t:'Coverage binding initiated pending provider confirmation.',au:[],r:false},admission:{t:'Insurance binding confirmation. Coverage active (up to \u20ac7,500). Terms countersigned.',au:['K'],r:true},pretreatment:{t:'Coverage parameters confirmed to patient, provider, and Glacie Health.',au:[],r:false},treatment:{t:'Active coverage throughout procedure. Complication flag monitoring linked to Sanita Assurance System.',au:['K'],r:true},postop:{t:'Complication severity assessment. Shield Protocol activation if threshold reached.',au:['K'],r:false},repatriation:{t:'Home-country care cost coverage if Shield triggered. Final case settlement.',au:['K'],r:false}}},
+];
+
+const CL={
+  source_diagnosis:{t:[['Medical records completeness',['Complete GP referral letter with ICD-10 diagnostic codes','All specialist reports from the last 12 months attached','Relevant imaging (MRI, X-ray, ultrasound) within 6 months','Laboratory results (CBC, metabolic panel) within 6 months','NHS number verified and recorded']],['Record transfer standards',['Records transferred via BVQS-approved encrypted channel','Records authenticated by issuing clinician (GMC number)','NHS patient consent for international transfer signed']]],p:[['Patient-specific risk flags',['Comorbidities fully documented (diabetes, hypertension, cardiac, pulmonary)','BMI recorded — flagged if >35 due to surgical risk','Active medication list verified against procedure contraindication list','Allergy list confirmed — nil known or fully documented','Previous surgical history and anaesthesia reactions noted']],['Capacity & consent',['Mental capacity assessment completed','Patient informed about cross-border care implications and rights','Emergency contact details recorded and verified']]]},
+  source_treatment:{t:[['Remote oversight activation',['Sanita Care App monitoring dashboard active and accessible','Procedure type and estimated duration communicated to GP','Remote access rights granted to nominated UK clinician (GMC verified)','Emergency escalation pathway to UK clinician documented']]],p:[['UK support activation',['Next of kin notified of procedure commencement','GP surgery flagged for same-day outcome notification','Post-op NHS reintegration care pathway pre-confirmed with GP']]]},
+  source_repatriation:{t:[['NHS reintegration standards',['GP practice notified by Sanita Group at least 24h before patient return','Discharge summary received, reviewed, and filed in NHS electronic record','New medications reviewed for NHS prescribing equivalence','Specialist follow-up referral generated if clinically indicated']]],p:[['90-day structured follow-up',['30-day telephone / Sanita Care App check-in scheduled','60-day clinical review with Glacie Health team','90-day patient-reported outcome measure (PROM) assessment','Patient satisfaction outcome recorded in BVQS case file']]]},
+  glacie_diagnosis:{t:[['Clinical needs assessment quality',['Condition documented against NHS diagnostic criteria (NICE guidelines)','NHS waitlist duration and treatment gap justification documented','Alternative UK treatment options assessed and documented','Clinical complexity score assigned (simple / moderate / complex)']],['Lived-experience review',['Patient-reported outcome measures (PROMs) collected (EQ-5D or equivalent)','Quality of life impact assessment completed','Patient goals and treatment expectations formally documented']]],p:[['Suitability assessment',['Patient fitness for international travel confirmed','Cultural and language needs identified and flagged to Sanita Group','Financial capacity and home support system assessed','No contraindications to proposed procedure identified']]]},
+  glacie_treatment:{t:[['Real-time case oversight',['Glacie Health clinical lead on standby during procedure (UK hours)','Procedure start and estimated end time confirmed and logged','Case monitoring active via Sanita Care App — alert thresholds set','Escalation pathway to Glacie clinical director active']],['Quality verification',['Surgeon identity and credentials confirmed at procedure time','Theatre nursing team credentials verified','Any deviation from agreed treatment plan flagged to Sanita Group immediately']]],p:[['Patient liaison protocol',['Patient-designated contact accessible before, during, and after procedure','Family update protocol active at procedure start, end, and recovery','24-hour Glacie Health helpline active throughout procedure period']]]},
+  glacie_postop:{t:[['Post-op check-in protocol',['Glacie Health 24h check-in call completed and documented','Glacie Health 72h check-in call completed','Recovery assessed using standardised scoring (Aldrete or equivalent)','Complication screening questionnaire administered','Pain management effectiveness rated and documented']],['Complication flag pathway',['Complication flag criteria defined and communicated to patient','Escalation pathway to Sanita Group and BVQS active','Red flag symptoms list provided to patient in their language','Direct Glacie Health emergency contact confirmed active 24/7']]],p:[['Patient experience & recovery',['Patient satisfaction survey administered','Lived-experience feedback collected for continuous quality improvement','Emotional and psychological recovery assessed','Home support network confirmed adequate for recovery phase']]]},
+  sanita_diagnosis:{t:[['Telemedicine pre-assessment',['Video consultation minimum 30 minutes completed and recorded','Specialist appropriate to procedure type confirmed (credentials verified)','Clinical findings documented in Sanita Care App (BVQS audit trail)','Diagnostic pathway selected with documented clinical justification']],['Risk stratification',['ASA Physical Status Classification assigned (I–V)','Surgical risk score applied (Revised Cardiac Risk Index or equivalent)','Venous thromboembolism risk assessed (Caprini score)','Procedure-specific risk factors documented']]],p:[['Patient case file creation',['Individual patient file opened in BVQS audit system','Combined procedure risk assessed if multiple treatments planned','Age-related risk factors documented and mitigated','Social support plan for post-operative period confirmed']]]},
+  sanita_referral:{t:[['Provider selection criteria',['JCI accreditation status verified — current and valid','BVQS registered provider confirmed in active registry','Facility HAI infection rate within BVQS-acceptable threshold','Surgical volume for specific procedure \u226550 cases/year verified']],['Referral documentation standards',['Complete referral package (clinical summary, imaging, labs) sent to provider','Treatment plan co-signed by Sanita clinical lead','Cost-transparent proposal with itemised breakdown issued to Glacie Health','Patient notified of selected provider and consent obtained']]],p:[['Pathway-patient matching',['Optimal provider matched to patient-specific condition and comorbidities','Language and cultural support available at selected facility confirmed','Logistics feasibility assessed (travel distance, fitness to fly, recovery time)']]]},
+  sanita_admission:{t:[['Document authentication',['Passport / national ID verified against medical records (2-factor check)','Pre-operative test results authenticated','Shield Protocol binding confirmed — coverage active from admission','Treatment-specific consent form verified and signed']],['Admission criteria checklist',['Fitness for surgery confirmed by Sanita medical director','All required pre-admission investigations complete and in-range','BVQS case-specific audit file opened and scope confirmed','Financial clearance confirmed (KPMG-verified)']]],p:[['Patient-specific admission check',['Comorbidity management plan active (e.g. anticoagulation bridging protocol)','Perioperative medication management plan reviewed','Emergency contact accessible throughout admission period','Interpreter / cultural liaison arranged if required']]]},
+  sanita_pretreatment:{t:[['Pre-op coordination audit',['Surgical team briefing meeting completed — attendees documented','Anaesthesia protocol reviewed and approved by anaesthetist','Antibiotic prophylaxis protocol confirmed (per BVQS HAI guidelines)','Blood products availability confirmed if case-specific risk identified']],['BVQS audit launch',['Case-specific BVQS audit file opened and assigned to auditor','Real-time audit notification system enabled in Sanita Care App','Audit escalation contact established (auditor, Sanita, Glacie Health)','All pre-op checkpoints verified complete before procedure clearance given']]],p:[['Patient preparation verification',['Pre-operative hygiene protocol confirmed','Peri-op management of pre-existing conditions confirmed (insulin, anticoagulants)','Psychological preparation support offered to patient','Family / support person logistics confirmed for procedure day']]]},
+  sanita_treatment:{t:[['Sanita assurance system',['Full Sanita Assurance System protocol active and logged','Complication trigger thresholds pre-set in monitoring dashboard','Shield Protocol monitoring active — cost reserve allocated','24/7 case management team on standby with direct provider line']],['BVQS real-time audit coordination',['BVQS auditor available on-call throughout procedure','Surgical safety checklist documentation received in real time','Anaesthetic event log monitored via Sanita Care App','Intraoperative incident reporting active — escalation in <15 minutes']]],p:[['Case-specific monitoring parameters',['Patient-specific blood loss thresholds set per weight and haemoglobin','Anaesthetic depth monitoring parameters set per ASA classification','Post-op destination confirmed (ward vs HDU vs ICU) per case risk','Individual fluid management plan defined per patient status']]]},
+  sanita_postop:{t:[['Daily follow-up protocol',['Sanita Care App post-op monitoring active — daily symptom log reviewed','Wound healing progress documented (photos via app where possible)','Vital signs trend reviewed daily for first 72 hours']],['Shield protocol assessment',['Complication severity scoring applied (Clavien-Dindo classification)','Shield Protocol eligibility reviewed against actual post-op findings','Home-country care requirement assessed — GP referral prepared if needed','Escalation to BVQS documented if complications arise']]],p:[['Patient-specific recovery milestones',['Recovery milestones assessed against patient procedure type and baseline fitness','Individualised pain management plan reviewed and adjusted','Patient mobility and activity level appropriate to specific procedure','Nutrition and hydration status confirmed adequate for recovery']]]},
+  sanita_repatriation:{t:[['Discharge documentation standards',['Comprehensive discharge summary: operative note, anaesthetic record, post-op course','All imaging and pathology reports included in transfer package','Implant / device records included (serial numbers, lot numbers, manufacturer)','BVQS audit case file finalised and all checkpoints verified complete']],['Case closure audit',['All BVQS audit checkpoints verified — outstanding items resolved','BVQS audit report generated and signed by auditing team','Report transmitted to Glacie Health with patient copy prepared']]],p:[['Individual case outcome review',['Patient outcome documented against pre-operative goals and PROMs','Complications (if any) classified, managed, and documented','Long-term follow-up plan outlined and communicated to GP']]]},
+  compliance_pretreatment:{t:[['Informed consent verification',["Consent form available in patient's native language (certified translation if required)","Procedure risks, benefits, and alternatives documented per BVQS standard","Consent signed in presence of neutral witness — date and time stamped","Procedure-specific consent addendum attached (anaesthesia, blood products, implants)"]],['Treatment authorisation',['Final authorisation issued by Glacie Health clinical lead in writing','Sanita Group clinical director sign-off on final treatment plan','Regulatory treatment code confirmed for destination-country procedure logging']]],p:[['Patient understanding verification',['Patient able to repeat back key procedure risks in own words (teach-back method)','Withdrawal rights explained — patient has right to withdraw at any time','Mental capacity re-confirmed on morning of procedure']]]},
+  compliance_treatment:{t:[['WHO surgical safety checklist',['Sign In completed before anaesthesia — identity, consent, allergies confirmed','Time Out completed before incision — site, procedure, team introductions','Sign Out completed before patient leaves theatre — specimen labelling, counts','All swab, instrument, and needle counts correct — documented by scrub nurse']],['Adverse event protocol',['Adverse event reporting pathway activated and tested pre-procedure','BVQS incident classification criteria applied to any events','Provider, Sanita Group, Glacie Health, and BVQS notified within 4 hours of any event']]],p:[['Patient rights in theatre',["Patient dignity and privacy preserved throughout procedure","Interpreter accessible if patient unable to communicate due to language","Unconscious patient representation protocol active (nominated next of kin)"]]]},
+  provider_diagnosis:{t:[['Specialist review standards',['Sub-specialty expertise confirmed appropriate for specific case type','Surgeon credential verification: board certification / equivalent (BVQS registry)','Case complexity assessed against surgical volume and outcome data','Case accepted formally within declared scope of clinical competence']],['Diagnostic confirmation',["Provider's own pre-assessment protocol applied to case","Additional diagnostic tests ordered if clinical gaps identified","Anaesthesia pre-assessment initiated — anaesthetic risks graded"]]],p:[['Individual case review',['Patient summary reviewed in full — case complexity acknowledged in writing','Any red flags identified escalated immediately to Sanita Group','Relevant comorbidities factored into surgical and anaesthetic plan']]]},
+  provider_admission:{t:[['Pre-admission protocol',['All pre-admission bloods reviewed — out-of-range values actioned','ECG performed and formally reviewed (age >40 or cardiac history)','Chest X-ray completed and reviewed if clinically indicated','Anaesthetic pre-assessment completed and anaesthetist signed off']],['Team assignment & briefing',['Primary surgeon confirmed and briefed on patient-specific plan','Anaesthetist assigned and briefed — special precautions documented','Scrub nurse and theatre team briefed on procedure and implant requirements']]],p:[['Patient-specific preparation',['Fasting protocol (nil by mouth) explained, confirmed, and documented','DVT prophylaxis prescribed (LMWH dose per weight, TED stockings fitted)','Allergies confirmed with pharmacy — wristband applied','Consent re-confirmed on admission by admitting nurse and surgeon']]]},
+  provider_pretreatment:{t:[['Surgical team readiness',['WHO Surgical Safety Checklist (Sign In section) completed','Correct patient, procedure, and site confirmed with three-point check','All required equipment, instrumentation, and implants available and sterile','Backup equipment available and location known to theatre team']],['Infection control pre-check',['Instrument sterility certificates verified — all within expiry date','Surgical site antiseptic preparation protocol confirmed','MRSA/MSSA pre-operative status known — decolonisation completed if positive']]],p:[['Final patient check',['Patient identity confirmed with two independent identifiers (name + DOB)','Surgical site marked by operating surgeon with indelible marker','Pre-op vital signs within acceptable range — documented in anaesthetic chart','Pre-medication administered per anaesthetic protocol']]]},
+  provider_treatment:{t:[['Surgical execution standards',['Operative technique per accepted clinical guidelines (NICE / specialty society)','Procedure-specific protocol checklist completed intraoperatively','Intraoperative imaging used where clinically indicated','Implant / device lot number and serial recorded in operative note (traceability)']],['HAI infection control',['Antibiotic prophylaxis administered within 60 minutes of incision','Surgical hand antisepsis protocol observed by all scrubbed team members','Sterile field maintenance documented — breaches logged and actioned']]],p:[['Anaesthesia protocol',['ASA-appropriate anaesthetic technique selected and documented','Anaesthetic drug doses calculated per patient weight and status','Intraoperative monitoring: ECG, SpO\u2082, EtCO\u2082, invasive pressure if required']]]},
+  provider_postop:{t:[['Recovery monitoring',['PACU criteria met before ward transfer (modified Aldrete score \u22659)','Vital signs monitored every 15 minutes in PACU','Pain score documented — target <4/10 before PACU discharge','Nausea and vomiting managed — anti-emetics administered as required']],['Discharge planning',["Discharge criteria checklist completed (Chung criteria or equivalent)","Post-op instruction sheet issued in patient's language","GP / Glacie Health discharge summary prepared and transmitted"]]],p:[['Individual discharge assessment',['Patient mobile and functional at baseline or better for procedure type','Adequate home support confirmed — carer or family contact documented','Analgesia, prophylaxis, and new medications dispensed and explained','Follow-up appointment confirmed before patient departure']]]},
+  provider_repatriation:{t:[['Discharge documentation completeness',['Operative report completed within 24h of procedure and signed by surgeon','Anaesthetic record included in transfer package','Discharge letter signed by responsible surgeon']],['Transfer of care standards',['Complete clinical summary sent to Sanita Group within 24h','Imaging transferred electronically in DICOM format','Prescription for follow-up medications prepared (30-day supply minimum)','7-day post-discharge telephone follow-up call protocol initiated']]],p:[['Individual transfer completeness',['All personal belongings and medications given to patient','Fitness to travel assessed — DVT risk and FTF clearance documented','Surgical site reviewed before departure — no active wound concerns','Direct query line contact provided — 24h access for concerns']]]},
+};
+
+function isNA(t){return t.startsWith('Not yet')||t.startsWith('Not directly')}
+let cur='diagnosis', openKey=null;
+const checked={};
+function getKey(sid,pid){return sid+'_'+pid}
+function getItems(k){const d=CL[k];if(!d)return[];const a=[];(d.t||[]).forEach(([,it])=>it.forEach(i=>a.push(i)));(d.p||[]).forEach(([,it])=>it.forEach(i=>a.push(i)));return a;}
+function getCk(k){if(!checked[k])checked[k]=getItems(k).map(()=>false);return checked[k];}
+function getProg(k){const c=getCk(k);return{done:c.filter(Boolean).length,total:c.length};}
+
+function renderCL(key,stL,phL){
+  const d=CL[key];
+  if(!d)return'<div style="padding:12px 14px;font-size:12px;color:var(--t3)">No BVQS checklist defined for this combination.</div>';
+  const c=getCk(key);const{done,total}=getProg(key);const pct=total?Math.round(done/total*100):0;
+  let gi=0;
+  let h=`<div class="cl-hdr">
+    <div><div style="font-size:10px;font-weight:600;color:#155a2e;letter-spacing:.5px;text-transform:uppercase;margin-bottom:2px">BVQS Audit Checklist</div>
+    <div style="font-size:13px;font-weight:600;color:var(--t1)">${stL}</div></div>
+    <div style="text-align:right"><div style="font-size:11px;color:#155a2e;font-weight:600">${done} / ${total} verified</div>
+    <div style="font-size:10px;color:var(--t4);margin-top:2px">${phL}</div></div>
+  </div>
+  <div class="cl-prog-bar"><div class="cl-prog-fill" style="width:${pct}%"></div></div>`;
+  [{label:'Treatment-specific criteria',k:'t'},{label:'Patient-specific criteria',k:'p'}].forEach(sec=>{
+    const cats=d[sec.k]||[];if(!cats.length)return;
+    h+=`<div class="cl-sec-lbl">${sec.label}</div>`;
+    cats.forEach(([cat,items])=>{
+      h+=`<div class="cl-cat"><div class="cl-cat-title">${cat}</div>`;
+      items.forEach(item=>{
+        const idx=gi++;const chk=c[idx];
+        h+=`<div class="cl-item" onclick="ck('${key}',${idx})">
+          <div class="cl-cb${chk?' chk':''}"></div>
+          <div class="cl-txt${chk?' chk':''}">${item}</div>
+        </div>`;
+      });
+      h+='</div>';
+    });
+    h+='<div style="height:0.5px;background:var(--bd3);margin:4px 14px 0"></div>';
+  });
+  return h;
+}
+
+function ck(key,idx){const c=getCk(key);c[idx]=!c[idx];renderPhase(cur);}
+function toggleCL(key){openKey=(openKey===key)?null:key;renderPhase(cur);}
+
+function renderPhase(pid){
+  cur=pid;const ph=phases.find(p=>p.id===pid);
+  document.getElementById('tabs').innerHTML=phases.map(p=>
+    `<button class="ptab${p.id===pid?' on':''}" onclick="renderPhase('${p.id}')">
+      <span class="n">${p.num}</span><span class="l">${p.label}</span>
+    </button>`).join('');
+  document.getElementById('phd').innerHTML=
+    `<div style="font-size:10px;font-weight:600;color:var(--t4);letter-spacing:.5px;text-transform:uppercase">Phase ${ph.num}</div>
+     <div style="font-size:15px;font-weight:600;color:var(--t1);margin-top:2px">${ph.label}</div>
+     <div style="font-size:12px;color:var(--t3);margin-top:2px">${ph.sub}</div>`;
+  document.getElementById('rows').innerHTML=stkh.map(s=>{
+    const a=s.acts[pid];const na=isNA(a.t);const key=getKey(s.id,pid);
+    const hasBvqs=a.au.includes('B');const isOpen=(openKey===key)&&hasBvqs;
+    let bdg='';
+    if(hasBvqs){
+      const{done,total}=CL[key]?getProg(key):{done:0,total:0};
+      const pr=CL[key]&&total>0?` <span style="opacity:.7">${done}/${total}</span>`:'';
+      bdg+=`<button class="bvqs-btn${isOpen?' open':''}" onclick="toggleCL('${key}')">&#10003; BVQS Audit${pr} ${isOpen?'&#9650;':'&#9660;'}</button>`;
+    }
+    if(a.au.includes('K'))bdg+=`<span class="kpmg-tag">KPMG Audit</span>`;
+    if(!a.r&&!na)bdg+=`<span class="rec-tag">Recommended</span>`;
+    const cl=isOpen?`<div class="cl-panel">${renderCL(key,s.label,'Phase '+ph.num+': '+ph.label)}</div>`:'';
+    return `<div class="stcard${na?' na':''}" style="border-left-color:${na?'':s.ac};background:${na?'transparent':s.bg};border-color:${na?'':'rgba(0,0,0,.06)'}">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:${na?0:5}px">
+        <div style="display:flex;align-items:flex-start;gap:9px">
+          <div class="st-dot" style="background:${s.ac}"></div>
+          <div><div style="font-size:12.5px;font-weight:600;color:var(--t1)">${s.label}</div><div style="font-size:10.5px;color:var(--t4)">${s.sub}</div></div>
+        </div>
+        <div style="text-align:right;flex-shrink:0">${bdg}</div>
+      </div>
+      ${!na?`<div style="font-size:12px;color:var(--t2);line-height:1.58;padding-left:18px">${a.t}</div>`:''}
+      ${cl}
+    </div>`;
+  }).join('');
+  const bc=stkh.filter(s=>s.acts[pid].au.includes('B')).length;
+  const kc=stkh.filter(s=>s.acts[pid].au.includes('K')).length;
+  document.getElementById('astrip').innerHTML=
+    `<div style="font-size:10px;font-weight:600;color:var(--t4);letter-spacing:.5px;text-transform:uppercase;width:100%;margin-bottom:2px">Audit coverage — Phase ${ph.num}</div>
+     <div style="font-size:11.5px;color:var(--t2)"><span class="adot" style="background:#166534"></span>BVQS Medical Audit: <b>${bc} stakeholder${bc!==1?'s':''}</b></div>
+     <div style="font-size:11.5px;color:var(--t2)"><span class="adot" style="background:#374151"></span>KPMG Financial Audit: <b>${kc} stakeholder${kc!==1?'s':''}</b></div>`;
+}
+renderPhase('diagnosis');
+</script>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- SPECIALTY MODULE: GYNAECOLOGY & PELVIC HEALTH              -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<style>
+.spec-sep{margin:32px 0 0;padding:20px 0 0;border-top:2px solid #fce7ee}
+.spec-tag{font-size:10px;font-weight:600;color:#9ca3af;letter-spacing:.9px;text-transform:uppercase;margin-bottom:4px}
+.spec-title{font-size:18px;font-weight:600;color:#9d1e47}
+.spec-sub{font-size:12.5px;color:var(--t3);margin-top:3px}
+.cond-tabs{display:flex;gap:4px;padding:10px 0;overflow-x:auto;scrollbar-width:none}
+.cond-tabs::-webkit-scrollbar{display:none}
+.ctab{display:flex;flex-direction:column;align-items:center;padding:7px 11px;border-radius:8px;border:0.5px solid var(--bd3);background:var(--bg2);min-width:88px;cursor:pointer;transition:all .15s}
+.ctab.on{border-color:#fbb6ce;background:#fff0f3}
+.ctab .cn{font-size:10.5px;font-weight:600;color:var(--t2);text-align:center;line-height:1.3}
+.ctab .cs{font-size:9.5px;color:var(--t4);text-align:center;line-height:1.3;margin-top:2px}
+.ctab.on .cn{color:#9d1e47}
+.sec-tabs{display:flex;gap:3px;padding:8px 0 10px;flex-wrap:wrap}
+.stab{font-size:10.5px;font-weight:500;padding:4px 10px;border-radius:6px;border:0.5px solid var(--bd3);background:var(--bg2);color:var(--t3);cursor:pointer;transition:all .15s}
+.stab.on{background:#fce7ee;border-color:#f9a8c9;color:#9d1e47}
+.check-card{padding:11px 13px;border-radius:8px;margin-bottom:6px;border-left:3px solid #166534;background:rgba(22,101,52,.06);border-top:0.5px solid rgba(22,101,52,.1);border-right:0.5px solid rgba(22,101,52,.1);border-bottom:0.5px solid rgba(22,101,52,.1)}
+.glacie-card{padding:11px 13px;border-radius:8px;margin-top:10px;border-left:3px solid #0d6e4a;background:rgba(13,110,74,.05);border-top:0.5px solid rgba(13,110,74,.15);border-right:0.5px solid rgba(13,110,74,.15);border-bottom:0.5px solid rgba(13,110,74,.15)}
+.spec-prog{margin-top:10px;padding:9px 14px;background:var(--bg2);border-radius:8px;border:0.5px solid var(--bd3);font-size:11.5px;color:var(--t2);display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+</style>
+
+<div class="spec-sep">
+  <div class="spec-tag">Specialty Module</div>
+  <div class="spec-title">Gynaecology &amp; Pelvic Health</div>
+  <div class="spec-sub">BVQS specialty-specific audit criteria — applied in addition to the General Framework. Click any condition to view checklists.</div>
+  <div class="cond-tabs" id="cond-tabs"></div>
+  <div class="sec-tabs" id="sec-tabs"></div>
+  <div id="spec-content"></div>
+  <div class="spec-prog" id="spec-prog"></div>
+</div>
+
+<script>
+const CONDITIONS=[
+  {id:'endo',   label:'Endometriosis',     sub:'Laparoscopy',         hex:'#9d1e47'},
+  {id:'myoma',  label:'Myoma',             sub:'Hyst / Myomect.',     hex:'#7b3f00'},
+  {id:'pelvis', label:'Pelvic Floor',      sub:'Urogynecology',      hex:'#1d5fa8'},
+  {id:'pcos',   label:'PCOS',             sub:'Surgical & Medical',  hex:'#166534'},
+  {id:'ivf',    label:'IVF',              sub:'Assisted Reprod.',    hex:'#4f35a1'},
+  {id:'cerv',   label:'Cervical & Uterine',sub:'Pathology Mgmt.',    hex:'#9a3412'},
+];
+const SEC_LABELS=['Pre-Operative Assessment','Procedure-Specific Protocol','Post-Operative Care','Patient-Specific Criteria','UK / NHS Standards'];
+const GYNAE={
+  endo:{sections:[
+    {items:['ENZIAN / rASRM endometriosis classification documented prior to surgery','Pelvic MRI reviewed by specialist — deep infiltrating disease identified and mapped','Fertility wishes formally documented and multidisciplinary discussion completed','Bowel prep protocol confirmed if deep infiltrating endometriosis suspected','MDT review completed if stage III–IV disease','Prior surgical history reviewed — adhesion risk assessment documented','Baseline pain score (NRS 0–10) documented for post-operative comparison','Current hormonal therapy status documented (cessation timing if applicable)']},
+    {items:['Laparoscopic entry technique documented (Hasson / Veress — clinically justified)','CO₂ insufflation pressure maintained ≤15 mmHg throughout procedure','Complete systematic peritoneal survey completed and documented','Intraoperative endometriosis staging (rASRM score) confirmed and recorded','Ureter identification confirmed if retroperitoneal dissection required','Adhesiolysis technique documented (sharp vs energy device)','Colorectal surgeon on standby if bowel involvement suspected','All specimens labelled and sent for formal histological examination']},
+    {items:['Multimodal analgesia protocol documented (NSAIDs, paracetamol, opioid-sparing)','Referred shoulder-tip pain (CO₂) management protocol applied','Post-operative hormonal management plan documented if applicable','Histology result review appointment scheduled before patient discharge','Fertility counselling completed post-operatively if relevant','Follow-up pathway confirmed per ESHRE / BSGE endometriosis guideline']},
+    {items:['Patient expectations and outcome goals documented pre-operatively','Pain diary initiated — baseline scores recorded across menstrual cycle','Quality of life tool applied (EHP-30 or equivalent) at baseline and 3 months','Psychological support offered — endometriosis-associated mental health impact assessed','Patient resource information and support group details provided']},
+    {items:['NHS England Endometriosis pathway compliance confirmed','BSGE accredited centre criteria met for complex endometriosis (stage III–IV)','NHS waitlist duration documented — cross-border referral justification filed','NICE guideline NG73 (Endometriosis) compliance verified','Post-operative care reintegration letter prepared for UK GP']},
+  ]},
+  myoma:{sections:[
+    {items:['Fibroid mapping completed — size, number, and FIGO location classification documented','MRI pelvis reviewed for accurate surgical planning','Pre-operative haemoglobin checked — iron supplementation if Hb <110 g/L','GnRH analogue pre-treatment decision documented with response monitoring if used','Fertility wishes formally documented — myomectomy vs hysterectomy decision rationale recorded','Uterine size equivalent documented (weeks of gestation)','VTE risk assessment completed (Caprini score)','Blood group and save / cross-match ordered per surgical complexity']},
+    {items:['Surgical route confirmed (laparoscopic / open / robotic) with clinical justification','Intraoperative cell salvage available if high blood loss risk (uterus >12 weeks equivalent)','Vasopressin use documented — concentration and volume recorded (myomectomy)','Morcellation: BVQS standard — only within containment bag; documented in operative note','All fibroid specimens labelled and sent for histological examination','Uterine closure: number of layers documented (myomectomy)','Drain insertion decision and rationale documented','Estimated blood loss documented and compared to pre-op haemoglobin']},
+    {items:['Post-operative haemoglobin check at 24 hours','VTE prophylaxis: dose, timing, and extended duration plan documented','Histology result review scheduled — patient informed of follow-up process','Menstrual outcome expectations documented and discussed with patient','Fertility follow-up plan confirmed post-myomectomy','Scar integrity counselling for future pregnancy if intramural myomectomy']},
+    {items:['Symptom severity score (UFS-QOL or equivalent) at baseline and 3 months','Menstrual blood loss assessment (PBAC score) documented pre-operatively','Patient preference for uterine conservation fully explored and documented','Psychological impact of hysterectomy addressed if applicable (body image, menopause)','HRT counselling initiated if pre-menopausal hysterectomy planned']},
+    {items:['NICE guideline NG88 (Heavy Menstrual Bleeding) compliance verified','Medical management trial documented prior to surgical referral if applicable','NHS waitlist duration documented — justification for cross-border referral filed','Post-operative care reintegration letter prepared for UK GP and gynaecologist']},
+  ]},
+  pelvis:{sections:[
+    {items:['Urodynamic studies completed and formally reviewed by urogynaecologist','POP-Q staging documented (prolapse grading I–IV)','Incontinence type confirmed: stress / urgency / mixed — classification documented','Conservative treatment trial documented: PFMT ≥3 months prior to surgical referral','Mesh use decision: BVQS standard — only if surgeon holds specific mesh training certification','Cystoscopy planned and scheduled if indicated clinically','Bowel function assessment and defaecatory symptoms documented','Sexual function assessment documented (baseline for post-operative comparison)']},
+    {items:['Mesh type, lot number, and manufacturer recorded in operative note if used','Cystoscopy performed intraoperatively after TVT/TOT — bladder and ureteral integrity confirmed','Bladder injury: repair technique and layer count documented if injury occurred','Nerve identification documented during dissection','Suture material type and size documented','Concurrent procedures (posterior repair, perineorrhaphy) documented']},
+    {items:['Voiding trial documented — catheter removal criteria met before discharge','Post-void residual bladder scan <150 ml confirmed before discharge','Pelvic floor physiotherapy referral made before patient departure','Mesh-related complications counselling documented (erosion, pain, dyspareunia)','6-week and 3-month follow-up review appointments scheduled','Continence outcome assessment at follow-up (ICIQ-UI SF or equivalent)']},
+    {items:['Quality of life tool (PFIQ-7 or equivalent) at baseline and 3 months','Patient expectations for continence and prolapse outcomes documented','Sexual health discussion completed — dyspareunia risk explained','BMI and lifestyle factors addressed (weight management, constipation prevention)']},
+    {items:['NICE guideline NG123 (Urinary incontinence and pelvic organ prolapse) compliance verified','NHS England mesh restrictions: only in registered centres with full audit trail','NHS waitlist duration documented — cross-border referral justification filed','UK pelvic mesh registry notification completed if mesh used','Post-operative care reintegration letter prepared for UK GP and urogynaecology team']},
+  ]},
+  pcos:{sections:[
+    {items:['PCOS diagnosis confirmed: Rotterdam criteria documented (≥2 of 3 criteria met)','BMI documented — weight management counselling provided if BMI >30','Failed medical ovulation induction documented: clomifene / letrozole ≥6 cycles','Full endocrine assessment: thyroid, prolactin, androgens, fasting insulin documented','Fertility wishes formally documented','Metabolic syndrome screening: fasting glucose, lipid profile documented','Ovarian reserve documented: AMH and AFC pre-operatively','OHSS risk stratification completed (AFC, AMH, PCO morphology)']},
+    {items:['Number of punctures per ovary documented (4–10 per ESHRE guideline)','Energy settings documented (40W, 4 seconds per puncture or equivalent — justified)','Both ovaries assessed and treated symmetrically','Adhesion prevention measures applied and documented','CO₂ insufflation pressure maintained ≤15 mmHg','Ovarian reserve preservation strategy documented']},
+    {items:['Ovulation monitoring plan: ultrasound cycle tracking from cycle 1 post-op','Hormonal reassessment at 3 months (LH/FSH ratio, androgens)','Fertility treatment plan documented if no spontaneous ovulation by 6 months','Lifestyle counselling documented: diet, exercise, weight management','Psychological support offered — PCOS mental health impact assessed']},
+    {items:['PCOSQ or equivalent quality of life tool at baseline and 3 months','Patient understanding of condition chronicity and long-term management documented','Menstrual cycle pattern and symptom diary initiated post-operatively','Cardiovascular risk counselling provided (long-term PCOS metabolic risk)']},
+    {items:['NICE Clinical Knowledge Summary (PCOS) compliance verified','ESHRE/ASRM International PCOS Guideline 2023 compliance documented','NHS waitlist duration documented — cross-border referral justification filed','Fertility clinic handover letter prepared if IVF/IUI referral indicated post-op','Post-operative care reintegration letter prepared for UK GP']},
+  ]},
+  ivf:{sections:[
+    {items:['Ovarian reserve documented: AMH, AFC, Day 2–3 FSH/LH/E2','Uterine cavity assessment completed: hysteroscopy or saline infusion sonography (SIS)','Tubal patency documented: HyCoSy, HSG, or diagnostic laparoscopy','Semen analysis documented (WHO 2021 criteria) — both partners assessed if applicable','Infectious disease screening: HIV, Hep B, Hep C, syphilis — all partners','Genetic counselling offered and documented if indicated','HFEA compliance confirmed if UK-registered couple','PGT counselling completed if indicated']},
+    {items:['Stimulation protocol documented with clinical justification (long/short/antagonist)','Monitoring: minimum ultrasound + E2 every 2–3 days during stimulation','OHSS risk assessment at trigger — freeze-all if AFC >15 or AMH >3.4','Egg collection: number, maturity, and grade documented','Fertilisation rate documented — IVF vs ICSI decision clinically justified','Embryo development documented daily — grading on day 3 and day 5/6','Endometrial preparation protocol documented for FET cycles','Embryo transfer: number, grade, and cavity position confirmed on ultrasound']},
+    {items:['Luteal phase support documented: type, dose, and duration','OHSS monitoring active if fresh transfer (daily contact for 5 days)','βhCG timing documented (12–14 days post-transfer)','Early viability scan schedule confirmed (6–7 weeks gestation)','Cryopreservation consent for surplus embryos signed and filed','Outcome documentation: positive/negative, clinical pregnancy, live birth (audit)']},
+    {items:['Psychological support offered and documented before, during, and after cycle','Multiple pregnancy risk counselling — single embryo transfer policy explained','Financial counselling completed: cycle, storage, and additional cycle costs','Age- and clinic-specific live birth rates disclosed','Failed cycle debrief: causes explored, next steps documented']},
+    {items:['HFEA Code of Practice compliance confirmed for UK-registered patients','NICE guideline CG156 (Fertility problems) eligibility criteria compliance documented','NHS-funded cycles eligibility confirmed — number of funded cycles documented','NHS waitlist duration documented — cross-border IVF justification filed','Post-treatment care: GP and NHS fertility team briefed on outcome']},
+  ]},
+  cerv:{sections:[
+    {items:['Cervical pathology: colposcopy report and biopsy result documented (CIN grade confirmed)','Uterine pathology: hysteroscopy-guided biopsy result documented','Previous cervical treatment history documented (prior LLETZ — residual cervical length recorded)','HPV status documented and genotype recorded if available','MDT recommendation formally documented for any cancer diagnosis or upstaging','FIGO staging documented if malignancy confirmed','Fertility preservation discussion documented — cervical length baseline measured','Lymph node imaging documented if indicated (staging MRI/CT/PET)']},
+    {items:['LLETZ/LEEP: transformation zone type documented (type 1/2/3) — excision method confirmed','Excision margins documented — deep and lateral margin status recorded','Hysteroscopy: distension medium type and volume documented','Fluid deficit monitoring (hysteroscopy): procedure halted if deficit >1,500 ml','Specimen orientation marked for pathologist (suture or ink at 12-oclock)','Concurrent endometrial sampling performed if clinically indicated','Electrosurgical settings documented (LLETZ: power setting, loop size)']},
+    {items:['Histology result follow-up pathway documented and communicated to patient','Colposcopy/cytology surveillance schedule confirmed per NHS CSPS guideline','Fertility counselling: preterm birth risk discussed post-LLETZ if applicable','Cervical cerclage discussion initiated if >2 LLETZ procedures or short cervix','Oncology referral pathway activated if margins involved or unexpected upstaging','Follow-up letter prepared for UK colposcopy team']},
+    {items:['Patient understanding of CIN/pathology severity and treatment intent documented','Anxiety management offered — HPV diagnosis psychological impact addressed','Smoking cessation counselling provided (HPV persistence risk)','Sexual health and contraception advice post-procedure documented','Emergency contact pathway explained for cervical bleeding post-LLETZ']},
+    {items:['NHS Cervical Screening Programme (NHSCSP) guideline compliance confirmed','NICE guideline DG3 (HPV testing) compliance documented','BSCC (British Society for Colposcopy) quality standards compliance verified','NHS waitlist duration documented — cross-border referral justification filed','Post-treatment care: UK colposcopy unit and GP notified']},
+  ]},
+};
+
+let curCond='endo', curSec=0;
+const specChecked={};
+function specKey(cid,si,ii){return `${cid}_${si}_${ii}`;}
+function getSpecCk(k){if(!(k in specChecked))specChecked[k]=false;return specChecked[k];}
+function toggleSpec(k){specChecked[k]=!specChecked[k];renderSpec();}
+
+function renderSpec(){
+  const cond=CONDITIONS.find(c=>c.id===curCond);
+  const data=GYNAE[curCond];
+  const sec=data.sections[curSec];
+
+  // Condition tabs
+  document.getElementById('cond-tabs').innerHTML=CONDITIONS.map(c=>
+    `<button class="ctab${c.id===curCond?' on':''}" onclick="selectCond('${c.id}')">
+      <span class="cn" style="color:${c.id===curCond?c.hex:''}">${c.label}</span>
+      <span class="cs">${c.sub}</span>
+    </button>`).join('');
+
+  // Section tabs
+  document.getElementById('sec-tabs').innerHTML=SEC_LABELS.map((l,i)=>
+    `<button class="stab${i===curSec?' on':''}" onclick="selectSec(${i})">${l}</button>`).join('');
+
+  // Checklist items
+  const items=sec.items;
+  const bvqsDone=items.filter((_,ii)=>getSpecCk(specKey(curCond,curSec,ii))).length;
+  let html=`<div class="check-card">
+    <div style="font-size:10px;font-weight:600;color:#166534;letter-spacing:.5px;text-transform:uppercase;margin-bottom:8px">
+      BVQS Audit Criteria — ${SEC_LABELS[curSec]}
+      <span style="float:right;font-weight:400;color:var(--t3)">${bvqsDone}/${items.length} verified</span>
+    </div>
+    <div style="height:3px;background:var(--bg3);border-radius:2px;margin-bottom:10px;overflow:hidden">
+      <div style="height:100%;background:#166534;border-radius:2px;width:${items.length?Math.round(bvqsDone/items.length*100):0}%;transition:width .3s"></div>
+    </div>`;
+  items.forEach((item,ii)=>{
+    const k=specKey(curCond,curSec,ii);const chk=getSpecCk(k);
+    html+=`<div class="cl-item" onclick="toggleSpec('${k}')">
+      <div class="cl-cb${chk?' chk':''}"></div>
+      <div class="cl-txt${chk?' chk':''}" style="font-size:12px">${item}</div>
+    </div>`;
+  });
+  html+='</div>';
+
+  // Glacie Health placeholders
+  html+=`<div class="glacie-card">
+    <div style="font-size:10px;font-weight:600;color:#0d6e4a;letter-spacing:.5px;text-transform:uppercase;margin-bottom:6px">Glacie Health Additions — ${SEC_LABELS[curSec]}</div>
+    <div style="font-size:12px;color:var(--t3);font-style:italic;padding:6px 0">Audit points to be defined by Glacie Health during partnership review (June 2026)</div>
+    ${[1,2,3].map(i=>`<div style="display:flex;align-items:center;gap:8px;padding:4px 0">
+      <div style="width:15px;height:15px;border-radius:3px;border:1.5px dashed rgba(13,110,74,.4);flex-shrink:0"></div>
+      <div style="font-size:12px;color:rgba(13,110,74,.5);font-style:italic">[ Glacie Health audit point ${i} — to be added ]</div>
+    </div>`).join('')}
+  </div>`;
+
+  document.getElementById('spec-content').innerHTML=html;
+
+  // Progress summary
+  const allItems=data.sections.flatMap((s,si)=>s.items.map((_,ii)=>specKey(curCond,si,ii)));
+  const totalDone=allItems.filter(k=>getSpecCk(k)).length;
+  document.getElementById('spec-prog').innerHTML=
+    `<div style="font-size:10px;font-weight:600;color:var(--t4);letter-spacing:.5px;text-transform:uppercase;width:100%;margin-bottom:2px">${cond.label} — overall progress</div>
+     <div style="display:flex;align-items:center;gap:5px"><span style="width:8px;height:8px;border-radius:50%;background:${cond.hex};display:inline-block"></span>${totalDone} of ${allItems.length} BVQS audit items verified across all sections</div>`;
+}
+
+function selectCond(cid){curCond=cid;curSec=0;renderSpec();}
+function selectSec(i){curSec=i;renderSpec();}
+renderSpec();
+</script>
+
+</body>
+</html>
