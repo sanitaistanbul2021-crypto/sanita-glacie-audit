@@ -373,14 +373,12 @@ renderSpec();
 </script>
 
 
+
 <!-- ═══════════════════════════════════════════════════════════ -->
 <!-- KPMG FINANCIAL AUDIT MODULE                                -->
 <!-- ═══════════════════════════════════════════════════════════ -->
 <style>
-.kmod-sep{margin:32px 0 0;padding:20px 0 0;border-top:2px solid #e5e7eb}
-.kmod-tag{font-size:10px;font-weight:600;color:#9ca3af;letter-spacing:.9px;text-transform:uppercase;margin-bottom:4px}
-.kmod-title{font-size:18px;font-weight:600;color:#374151}
-.kmod-sub{font-size:12.5px;color:var(--t3);margin-top:3px}
+.kmod-sep{margin:32px 0 0;padding:20px 0 0;border-top:2px solid var(--bd3)}
 .kph-tabs{display:flex;gap:4px;padding:10px 0;overflow-x:auto;scrollbar-width:none}
 .kph-tabs::-webkit-scrollbar{display:none}
 .kphb{display:flex;flex-direction:column;align-items:center;padding:7px 10px;border-radius:8px;border:0.5px solid var(--bd3);background:var(--bg2);min-width:74px;cursor:pointer;transition:all .15s}
@@ -394,28 +392,12 @@ renderSpec();
 .kcl-cb.kchk::after{content:'';display:block;width:5px;height:9px;border:2px solid white;border-top:none;border-left:none;transform:rotate(45deg) translate(-1px,-1px)}
 .kprog-bar{height:3px;background:var(--bg3);border-radius:2px;overflow:hidden;margin:8px 0}
 .kprog-fill{height:100%;background:#374151;border-radius:2px;transition:width .3s}
-</style>
-
-<div class="kmod-sep">
-  <div class="kmod-tag">KPMG Financial Audit</div>
-  <div class="kmod-title">Mali Denetim Kriterleri — Tedavi Paketi Bazlı</div>
-  <div class="kmod-sub">Her fazda tedavi paketi fiyat uyumu, NHS benchmark karşılaştırması, overbilling ve underbilling önleme</div>
-  <div class="kph-tabs" id="kph-tabs"></div>
-  <div id="kph-hdr" style="padding:9px 13px;background:rgba(55,65,81,.07);border-radius:8px;margin-bottom:10px;border:0.5px solid rgba(55,65,81,.15)"></div>
-  <div id="kpmg-check-rows"></div>
-  <div id="kpmg-summary" style="margin-top:12px;padding:9px 13px;background:var(--bg2);border-radius:8px;border:0.5px solid var(--bd3);font-size:11.5px;color:var(--t2)"></div>
-</div>
-
-<!-- ═══════════════════════════════════════════════════════════ -->
-<!-- CAPA & SHIELD PROTOCOL MODULE                              -->
-<!-- ═══════════════════════════════════════════════════════════ -->
-<style>
-.capa-sep{margin:32px 0 0;padding:20px 0 0;border-top:2px solid #e5e7eb}
+.capa-sep{margin:32px 0 0;padding:20px 0 0;border-top:2px solid var(--bd3)}
 .capa-mod-tabs{display:flex;gap:4px;padding:8px 0;flex-wrap:wrap}
 .capa-mtab{font-size:11px;font-weight:600;padding:5px 14px;border-radius:6px;border:0.5px solid var(--bd2);background:var(--bg2);color:var(--t3);cursor:pointer;transition:all .15s}
-.capa-mtab.c-on-bvqs{background:rgba(22,101,52,.12);color:#155a2e;border-color:rgba(22,101,52,.3)}
-.capa-mtab.c-on-kpmg{background:rgba(55,65,81,.12);color:#374151;border-color:rgba(55,65,81,.3)}
-.capa-mtab.c-on-shield{background:rgba(30,94,168,.1);color:#1e5ea8;border-color:rgba(30,94,168,.3)}
+.capa-mtab.c-bvqs{background:rgba(22,101,52,.12);color:#155a2e;border-color:rgba(22,101,52,.3)}
+.capa-mtab.c-kpmg{background:rgba(55,65,81,.12);color:#374151;border-color:rgba(55,65,81,.3)}
+.capa-mtab.c-shield{background:rgba(30,94,168,.1);color:#1e5ea8;border-color:rgba(30,94,168,.3)}
 .capa-level{border-radius:10px;margin-bottom:10px;overflow:hidden;border:0.5px solid}
 .capa-hdr{padding:10px 14px;display:flex;align-items:center;justify-content:space-between;cursor:pointer}
 .capa-body{padding:0 14px 12px;display:none}
@@ -432,142 +414,155 @@ renderSpec();
 .no-b{display:inline-block;font-size:10px;font-weight:500;padding:1px 7px;border-radius:8px;background:var(--bg2);color:var(--t4);border:0.5px solid var(--bd3)}
 </style>
 
+<div class="kmod-sep">
+  <div class="tag">KPMG Financial Audit</div>
+  <div class="hdr-title">Financial Audit Criteria — Treatment Package Based</div>
+  <div style="font-size:12.5px;color:var(--t3);margin-top:3px">Phase-by-phase package price compliance, NHS benchmark comparison, overbilling &amp; underbilling prevention</div>
+  <div class="kph-tabs" id="kph-tabs"></div>
+  <div id="kph-hdr" style="padding:9px 13px;background:rgba(55,65,81,.07);border-radius:8px;margin-bottom:10px;border:0.5px solid rgba(55,65,81,.15)"></div>
+  <div id="kpmg-check-rows"></div>
+  <div id="kpmg-summary" style="margin-top:12px;padding:9px 13px;background:var(--bg2);border-radius:8px;border:0.5px solid var(--bd3);font-size:11.5px;color:var(--t2)"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- CAPA & SHIELD PROTOCOL MODULE                              -->
+<!-- ═══════════════════════════════════════════════════════════ -->
 <div class="capa-sep">
-  <div class="kmod-tag">CAPA & Shield Protocol</div>
-  <div class="kmod-title">Düzeltici Aksiyon, Hasta Koruma &amp; Sigorta Kapsamı</div>
-  <div class="kmod-sub">Prosedüre aykırı durumlarda eskalasyon zinciri, sorumlu taraflar ve Shield Protocol kapsamı</div>
+  <div class="tag">CAPA &amp; Shield Protocol</div>
+  <div class="hdr-title">Corrective Action, Patient Protection &amp; Insurance Coverage</div>
+  <div style="font-size:12.5px;color:var(--t3);margin-top:3px">Escalation chain, responsible parties, and Shield Protocol coverage for all non-compliance scenarios</div>
   <div class="capa-mod-tabs">
-    <button class="capa-mtab c-on-bvqs" id="cmtab-bvqs" onclick="showCapaTab('bvqs')">BVQS — Klinik Aksiyon</button>
-    <button class="capa-mtab" id="cmtab-kpmg" onclick="showCapaTab('kpmg')">KPMG — Mali Aksiyon</button>
-    <button class="capa-mtab" id="cmtab-shield" onclick="showCapaTab('shield')">Shield Protocol Kapsamı</button>
+    <button class="capa-mtab c-bvqs" id="cmtab-bvqs" onclick="showCapaTab('bvqs')">BVQS — Clinical Action</button>
+    <button class="capa-mtab" id="cmtab-kpmg" onclick="showCapaTab('kpmg')">KPMG — Financial Action</button>
+    <button class="capa-mtab" id="cmtab-shield" onclick="showCapaTab('shield')">Shield Protocol Coverage</button>
   </div>
   <div id="capa-content"></div>
 </div>
 
 <script>
 const KPMG_AUDIT={
-  application:{label:'Application',sub:'Sözleşme & Fiyat Çerçevesi',items:[
-    'Master Service Agreement (MSA) Sanita Group, Glacie Health ve Healthcare Provider tarafından imzalı, tarihli ve versiyonlanmış',
-    'Tüm taraflarca onaylı tedavi paketi fiyat listesi — imzalı, tarihli, değiştirilemez kopyası her tarafta',
-    'NHS tarife eşdeğeri fiyatlar referans baseline olarak belgelenmiş (her tedavi kategorisi için)',
-    'Ingiltere ozel sektor esdeğer fiyatlandirması belgelenmiş (karsilaştırma için)',
-    'Doviz, odeme koşulları ve kur protokolü mutabık ve imzalanmış',
-    'On odeme/depozito takvimi kilometre taşlarıyla tanımlanmış',
-    'Iptal ve iade politikası kademeli yapıda belgelenmiş',
-    'Paket kapsamı ve kapsam dışı hizmetler açıkça tanımlanmış — belirsiz "diğer hizmetler" kategorisine izin verilmez',
-    'KPMG gorevlendirme mektubu ve denetim kapsamı tum taraflarca imzalanmış',
+  application:{label:'Application',sub:'Pre-Agreement & Pricing Framework',items:[
+    'Master Service Agreement (MSA) signed by Sanita Group, Glacie Health, and Healthcare Provider — dated and version-controlled',
+    'Pre-agreed treatment package price list signed by all parties — immutable copy held by each party',
+    'NHS tariff-equivalent prices documented as reference baseline for each treatment category',
+    'UK private sector equivalent pricing documented for independent comparison',
+    'Currency, payment terms, and FX rate protocol (GBP/EUR/TRY) agreed and signed',
+    'Deposit/advance payment schedule defined with milestone triggers',
+    'Cancellation and refund policy documented in tiered structure',
+    'Package inclusions and exclusions explicitly defined — no ambiguous "other services" categories permitted',
+    'KPMG engagement letter and audit scope signed by all parties',
   ]},
-  diagnosis:{label:'Diagnosis',sub:'Tanısal Maliyet Doğrulama',items:[
-    'Tum tanısal maliyetler tedavi paketine dahil — ayrı faturalandırmaya izin verilmez',
-    'Telemedicine konsultasyon ucreti onceden mutabık tarife dahilinde teyit edilmiş',
-    'Ek tanısal testler: sipariş verilmeden once Sanita Group tarafından yazılı olarak yetkilendirilmiş',
-    'Tanı aşaması fiili maliyeti ile paket tahsisi karşılaştırması belgelenmiş',
-    'Paket dışı tanısal yükseltme: hasta ve Glacie Health yazılı onayı olmadan yapılamaz',
+  diagnosis:{label:'Diagnosis',sub:'Diagnostic Cost Verification',items:[
+    'All diagnostic costs included in pre-agreed treatment package — no separate billing permitted',
+    'Telemedicine consultation fee confirmed within pre-agreed tariff',
+    'Any additional diagnostic tests: written pre-authorisation from Sanita Group required before ordering',
+    'Diagnostic phase actual cost vs. package allocation comparison documented',
+    'No diagnostic upselling without written authorisation from patient and Glacie Health',
   ]},
-  referral:{label:'Referral',sub:'Yönlendirme & Fiyat Teyidi',items:[
-    'Nihai tedavi paketi fiyatı yazılı olarak hastaya ve Glacie Health\'e teyit edilmiş',
-    'Seçilen sağlayıcı tarifesi onceden mutabık oran çizelgesine karşı doğrulanmış',
-    'Taraflar arasında gizli yonlendirme teşviki veya geri odeme bulunmadığı beyan edilmiş',
-    'Paket degişikliği: maliyet etkisi belgesi oluşturulmuş ve tum taraflarca onaylanmış',
-    'NHS tarife eşdeğeri vs. Sanita Group fiyatı karşılaştırma raporu hazırlanmış',
+  referral:{label:'Referral',sub:'Routing & Price Confirmation',items:[
+    'Final treatment package price confirmed in writing to patient and Glacie Health',
+    'Selected provider tariff verified against pre-agreed rate schedule',
+    'No undisclosed referral incentives or kickbacks between parties — formal declaration signed',
+    'Any package amendment: cost impact statement produced and signed by all parties',
+    'NHS tariff-equivalent vs. Sanita Group pricing comparison report produced',
   ]},
-  admission:{label:'Admission',sub:'Kabul & Rezerv Aktivasyonu',items:[
-    'Kabul ucreti onceden mutabık paket dahilinde teyit edilmiş',
-    'On yatış test maliyetleri mutabık tarife dahilinde veya paket kapsamında',
-    'Oda/koğuş kategorisi mutabık konaklama seviyesiyle eşleşiyor — yukseltme teklifi yapılamaz',
-    'Paket dışı hizmet eklemesi: yazılı hasta onayı ve maliyet açıklaması zorunlu',
-    'Shield Protocol mali rezervi teyit edilmiş ve ayrılmış',
-    'KPMG gercek zamanli maliyet izleme paneli aktif',
+  admission:{label:'Admission',sub:'Admission & Financial Reserve Activation',items:[
+    'Admission fee confirmed within pre-agreed package',
+    'Pre-admission test costs within agreed tariff or included in package',
+    'Room/ward category matches agreed accommodation level — upselling not permitted',
+    'Non-package service addition: written patient authorisation and cost disclosure mandatory',
+    'Shield Protocol financial reserve confirmed and allocated',
+    'KPMG real-time cost monitoring dashboard active',
   ]},
-  pretreatment:{label:'Pre-Treatment',sub:'Ameliyat Oncesi Maliyet Kontrolü',items:[
-    'Anestezi ekibi ucreti onceden mutabık paket dahilinde teyit edilmiş',
-    'Ameliyat oncesi ilaclar mutabık eczane tarifesinde faturalandırılmış',
-    'Ameliyathane rezervasyonu sozleşmeli tarife uzerinden',
-    'Ameliyat oncesi gizli ek ucret yok — KPMG tarafından doğrulanmış',
-    'Son kalemlendirme maliyet tahmini mutabık paket ile karşılaştırılmış',
+  pretreatment:{label:'Pre-Treatment',sub:'Pre-Operative Cost Control',items:[
+    'Anaesthesia team fee confirmed within pre-agreed package',
+    'Pre-operative medications billed at agreed pharmacy tariff',
+    'Operating theatre booking at contracted rate',
+    'No undisclosed add-on fees before procedure — verified by KPMG',
+    'Final itemised cost estimate reviewed against agreed package',
   ]},
-  treatment:{label:'Treatment',sub:'Ameliyat Anlik Maliyet Izleme',items:[
-    'Cerrahi ekip ucretleri sozleşmeli tarifelerde — ek ucret yok',
-    'Implant ve tıbbi cihazlar onceden mutabık urun fiyatlarında (lot takipli)',
-    'Implant/cihaz fiyatı uretici onerilen satış fiyatı + mutabık kar marjıyla karşılaştırılmış',
-    'Sarf malzemeleri paket tahsisi dahilinde — aşım icin onceden yazılı yetkilendirme gerekli',
-    'Gercek zamanli maliyet takibi aktif — paket butcesinden %10+ sapma olursa KPMG alarmı',
-    'Paket dışı maliyet: yüklenilmeden once yazılı yetkilendirme zorunlu',
+  treatment:{label:'Treatment',sub:'Real-Time Intraoperative Cost Monitoring',items:[
+    'Surgical team fees at contracted rates — no surcharges',
+    'Implants and medical devices at pre-agreed product prices (lot-traceable)',
+    'Implant/device price verified against manufacturer RRP + agreed markup',
+    'Consumables within package allowance — written pre-authorisation required if exceeded',
+    'Real-time cost tracking active — KPMG alert triggered if >10% variance from package budget',
+    'Any cost deviation requires written authorisation before being incurred',
   ]},
-  postop:{label:'Post-Operative',sub:'Ameliyat Sonrasi Maliyet & Shield',items:[
-    'Hastane yatış suresi mutabık paket suresi dahilinde izleniyor',
-    'Komplikasyon nedeniyle uzayan yatış: Shield Protocol — hasta icin sıfır ek maliyet',
-    'Ameliyat sonrası ilaclar mutabık eczane tarifesinde',
-    'Komplikasyon nedeniyle ek girişim: Shield Protocol kapsamında (7.500 EUR ust sınıra kadar)',
-    'Hasta taburculuk zamanlaması mali/fatura değerlendirmeleri tarafından etkilenemiyor',
-    'Tum sarf kalemlerinin faturası paket bileşen listesiyle karşılaştırılmış',
+  postop:{label:'Post-Operative',sub:'Post-Operative Cost & Shield Protocol',items:[
+    'Hospital stay duration monitored against agreed package',
+    'Extended stay due to complication: Shield Protocol activated — zero additional cost to patient',
+    'Post-operative medications billed at agreed pharmacy tariff',
+    'Additional procedure due to complication: covered by Shield Protocol (up to EUR 7,500)',
+    'Patient discharge timing must not be influenced by financial or billing considerations',
+    'All consumable items invoiced and compared against package component list',
   ]},
-  repatriation:{label:'Repatriation',sub:'Nihai Uzlaştirma & KPMG Kapanışı',items:[
-    'Nihai fatura: mutabık paket karşısında tam kalemlendirme dokumu ile duzenlenmiş',
-    'Her satır kalemi imzalı fiyat listesine karşı doğrulanmış',
-    'Overbilling tespit edilirse: odeme serbest bırakılmadan once duzeltilmiş ve belgelenmiş',
-    'Teslim edilmemiş hizmet (ucret alındı, yapılmadı): 7 gun icinde iade veya alacak notu',
-    'Nihai odeme serbest bırakılmadan once KPMG onayı zorunlu',
-    'KPMG vaka finansal denetim raporu Glacie Health\'e iletilmiş',
-    'NHS tarife eşdeğeri karşılaştırma raporu iletilmiş',
-    'Paket maliyet ozeti: mutabık vs. gercekleşen harcama analizi belgelenmiş',
+  repatriation:{label:'Repatriation',sub:'Final Reconciliation & KPMG Closure',items:[
+    'Final invoice issued with full itemised breakdown vs. pre-agreed package',
+    'Each line item verified against signed price list',
+    'Overbilling identified: corrected and documented before payment release',
+    'Undelivered service (charged but not rendered): refund or credit note within 7 days',
+    'KPMG sign-off required before final payment is released to provider',
+    'KPMG case financial audit report issued to Glacie Health',
+    'NHS tariff-equivalent comparison report issued',
+    'Package cost summary: agreed vs. actual spend analysis documented',
   ]},
 };
 
-const CAPA_LEVELS={
+const CAPA_DATA={
   bvqs:[
-    {level:1,label:'Seviye 1 — Kucuk Sapma',color:'#92400e',bg:'rgba(146,64,14,.07)',border:'rgba(146,64,14,.22)',
-     trigger:'Eksik dokumantasyon, minor prosedur sapması, hasta uzerinde etkisi yok',
-     detects:'BVQS denetcisi',escalates:'Sanita Group klinik koordinatoru',
-     timeline:'24 saat icinde duzeltme',
-     action:'Dokumantasyon tamamlanır; surec duzeltilir; denetim dosyasına kaydedilir',
-     patient:'Hasta etkisi yok',insurance:'Hayır'},
-    {level:2,label:'Seviye 2 — Onemli Sapma',color:'#c2410c',bg:'rgba(194,65,12,.07)',border:'rgba(194,65,12,.28)',
-     trigger:'Onay sureci eksikligi, enfeksiyon kontrolu ihlali, WHO kontrol listesi atlandı',
-     detects:'BVQS denetcisi',escalates:'Sanita Group Klinik Direktoru + Glacie Health Klinik Lideri',
-     timeline:'Anında eskalasyon — 4 saat icinde duzeltici aksiyon planı',
-     action:'Guvenli ise islem duraklatılır; duzeltici plan uygulanır; gerekirse hasta bilgilendirilir',
-     patient:'Izleme altında; olası gecikme',insurance:'Bekleme — Shield Protocol hazırda'},
-    {level:3,label:'Seviye 3 — Kritik / Sentinel',color:'#991b1b',bg:'rgba(153,27,27,.07)',border:'rgba(153,27,27,.28)',
-     trigger:'Yanlış hasta, yanlış prosedur, agır advers olay, cerrahi hata',
-     detects:'BVQS denetcisi veya klinik ekip',escalates:'Sanita Group CEO + BVQS Baş Denetci + Glacie Health Direktoru + Sağlayıcı Tıbbi Direktoru',
-     timeline:'Anında (15 dakika icinde) — tam eskalasyon zinciri',
-     action:'Guvenli ise islem durdurulur; MDT acil inceleme; regulatore bildirim; hasta tam koruma altında',
-     patient:'Tam koruma — hastaya sıfır ek maliyet',insurance:'Shield Protocol anında aktif + Mali Mesuliyet Sigortası devreye girer'},
+    {level:'Level 1 — Minor Deviation',color:'#92400e',bg:'rgba(146,64,14,.07)',border:'rgba(146,64,14,.22)',
+     trigger:'Incomplete documentation, minor protocol deviation, no patient impact',
+     detects:'BVQS auditor',escalates:'Sanita Group clinical coordinator',
+     timeline:'Corrected within 24 hours',
+     action:'Documentation completed; process corrected; logged in audit file',
+     patient:'No patient impact',insurance:'No'},
+    {level:'Level 2 — Significant Deviation',color:'#c2410c',bg:'rgba(194,65,12,.07)',border:'rgba(194,65,12,.28)',
+     trigger:'Incomplete consent process, infection control breach, WHO checklist skipped',
+     detects:'BVQS auditor',escalates:'Sanita Group Clinical Director + Glacie Health Clinical Lead',
+     timeline:'Immediate escalation — corrective action plan within 4 hours',
+     action:'Procedure paused if safe to do so; corrective plan implemented; patient notified if affected',
+     patient:'Under monitoring; potential delay',insurance:'Standby — Shield Protocol on alert'},
+    {level:'Level 3 — Critical / Sentinel',color:'#991b1b',bg:'rgba(153,27,27,.07)',border:'rgba(153,27,27,.28)',
+     trigger:'Wrong patient, wrong procedure, serious adverse event, surgical error',
+     detects:'BVQS auditor or clinical team',escalates:'Sanita Group CEO + BVQS Lead Auditor + Glacie Health Director + Provider Medical Director',
+     timeline:'Immediate (<15 minutes) — full escalation chain activated',
+     action:'Procedure suspended if safe; emergency MDT review; regulatory notification; patient fully protected',
+     patient:'Full protection — zero additional cost to patient',insurance:'Shield Protocol activated immediately + Professional Indemnity Insurance engaged'},
   ],
   kpmg:[
-    {level:1,label:'Seviye 1 — Kucuk Tutarsızlık',color:'#374151',bg:'rgba(55,65,81,.07)',border:'rgba(55,65,81,.2)',
-     trigger:'Fatura kalemi acıklaması belirsiz, kucuk yuvarlama farkı',
-     detects:'KPMG denetcisi',escalates:'Sanita Group finans koordinatoru',
-     timeline:'48 saat icinde duzeltme',
-     action:'Fatura duzeltilir; dokumantasyon guncellenir',
-     patient:'Hasta etkisi yok',insurance:'Hayır'},
-    {level:2,label:'Seviye 2 — Overbilling / Yetkisiz Ek',color:'#1d4ed8',bg:'rgba(29,78,216,.06)',border:'rgba(29,78,216,.22)',
-     trigger:'Mutabık tarifeyi aşan fatura; onaylanmamış ek hizmet faturalandırması',
-     detects:'KPMG denetcisi',escalates:'Sanita Group CFO + Glacie Health Finans Yoneticisi',
-     timeline:'Odeme dondurulur; 7 gun icinde inceleme ve cozum',
-     action:'Fazla faturalanan tutar + faiz iade edilir; sağlayıcıya resmi uyarı',
-     patient:'Odeme anlasmazlıgı yonetilir — hastaya etkisi yok',insurance:'Hayır (mali, klinik değil)'},
-    {level:3,label:'Seviye 3 — Sistematik Usulsuzluk',color:'#7c3aed',bg:'rgba(124,58,237,.06)',border:'rgba(124,58,237,.25)',
-     trigger:'Sistematik overbilling, sahte fatura, izinsiz paket değişikliği',
-     detects:'KPMG denetcisi',escalates:'Sanita Group CEO + KPMG Partneri + Hukuk + Glacie Health Direktoru',
-     timeline:'Anında odeme durdurulur; tam denetim başlatılır',
-     action:'Kapsamlı mali denetim; gerekirse hukuki surec; sağlayıcı ilişkisi gozden gecirilir',
-     patient:'Tam iade garantili; hasta tam koruma altında',insurance:'Mesleki Sorumluluk Sigortası aktive edilir'},
+    {level:'Level 1 — Minor Discrepancy',color:'#374151',bg:'rgba(55,65,81,.07)',border:'rgba(55,65,81,.2)',
+     trigger:'Invoice line item description unclear, minor rounding discrepancy',
+     detects:'KPMG auditor',escalates:'Sanita Group finance coordinator',
+     timeline:'Corrected within 48 hours',
+     action:'Invoice corrected; documentation updated',
+     patient:'No patient impact',insurance:'No'},
+    {level:'Level 2 — Overbilling / Unauthorised Addition',color:'#1d4ed8',bg:'rgba(29,78,216,.06)',border:'rgba(29,78,216,.22)',
+     trigger:'Charge exceeding pre-agreed tariff; unauthorised add-on service billed',
+     detects:'KPMG auditor',escalates:'Sanita Group CFO + Glacie Health Finance Lead',
+     timeline:'Payment held pending investigation; resolved within 7 days',
+     action:'Overbilled amount + interest refunded; formal warning issued to provider',
+     patient:'Payment dispute managed — no patient impact',insurance:'No (financial, not clinical)'},
+    {level:'Level 3 — Systematic Fraud',color:'#7c3aed',bg:'rgba(124,58,237,.06)',border:'rgba(124,58,237,.25)',
+     trigger:'Systematic overbilling, fraudulent invoicing, unauthorised package substitution',
+     detects:'KPMG auditor',escalates:'Sanita Group CEO + KPMG Partner + Legal + Glacie Health Director',
+     timeline:'Immediate payment suspension; full audit initiated',
+     action:'Comprehensive financial audit; legal action if required; provider relationship reviewed',
+     patient:'Full refund guaranteed; patient fully protected',insurance:'Professional Indemnity Insurance activated'},
   ],
 };
 
 const SHIELD_COV=[
-  {s:'Klinik komplikasyon (onlenemez)',c:true,cap:'7.500 EUR',p:'Sigorta',t:'48 saat',n:''},
-  {s:'Klinik komplikasyon (sağlayıcı hatası)',c:true,cap:'7.500 EUR + mali mesuliyet',p:'Sigorta + Sağlayıcı',t:'Anında',n:'Ayrı poliçe devreye girer'},
-  {s:'Komplikasyon nedeniyle uzayan yatış',c:true,cap:'7.500 EUR toplam icinde',p:'Sigorta',t:'Gun bazlı',n:''},
-  {s:'Acil repatriation',c:true,cap:'7.500 EUR toplam icinde',p:'Sigorta',t:'Anında',n:''},
-  {s:'UK ev bakım maliyetleri (komplikasyon)',c:true,cap:'7.500 EUR toplam icinde',p:'Sigorta',t:'7 gun icinde',n:''},
-  {s:'Komplikasyon nedeniyle ek cerrahi',c:true,cap:'7.500 EUR toplam icinde',p:'Sigorta',t:'Anında',n:''},
-  {s:'Overbilling kaynaklı hasta zararı',c:true,cap:'Tam tutar',p:'KPMG mali garantisi',t:'7 gun',n:''},
-  {s:'CAPA Seviye 2/3 kaynaklı ek maliyet',c:true,cap:'Vaka bazlı',p:'Sigorta + Sağlayıcı',t:'Aksiyon ile eş zamanlı',n:''},
-  {s:'Hastanın kendi istegiyle vazgecmesi',c:false,cap:'—',p:'Hasta',t:'—',n:'Tıbbi neden yok'},
-  {s:'Beyan edilmemiş onceki durum',c:false,cap:'—',p:'Hasta',t:'—',n:'Eksik bildirim muafiyet gerektirir'},
+  {s:'Clinical complication (non-preventable)',c:true,cap:'EUR 7,500',p:'Insurance',t:'48 hours'},
+  {s:'Clinical complication (provider fault)',c:true,cap:'EUR 7,500 + indemnity',p:'Insurance + Provider',t:'Immediate'},
+  {s:'Extended hospitalisation due to complication',c:true,cap:'Within EUR 7,500 total',p:'Insurance',t:'Day-by-day'},
+  {s:'Emergency repatriation',c:true,cap:'Within EUR 7,500 total',p:'Insurance',t:'Immediate'},
+  {s:'UK home care costs (complication-related)',c:true,cap:'Within EUR 7,500 total',p:'Insurance',t:'Within 7 days'},
+  {s:'Additional surgery due to complication',c:true,cap:'Within EUR 7,500 total',p:'Insurance',t:'Immediate'},
+  {s:'Patient loss due to overbilling',c:true,cap:'Full amount',p:'KPMG financial guarantee',t:'7 days'},
+  {s:'Additional costs from CAPA Level 2/3',c:true,cap:'Case-specific',p:'Insurance + Provider',t:'Concurrent with action'},
+  {s:'Patient change of mind (no medical reason)',c:false,cap:'—',p:'Patient',t:'—'},
+  {s:'Undisclosed pre-existing condition',c:false,cap:'—',p:'Patient',t:'—'},
 ];
 
 let curKP='application';
@@ -589,12 +584,12 @@ function renderKAudit(){
   const d=KPMG_AUDIT[curKP];
   const done=d.items.filter((_,i)=>getKC(kk(curKP,i))).length;
   document.getElementById('kph-hdr').innerHTML=
-    `<div style="font-size:10px;font-weight:600;color:rgba(55,65,81,.7);letter-spacing:.5px;text-transform:uppercase">KPMG Mali Denetim — ${d.label}</div>
+    `<div style="font-size:10px;font-weight:600;color:rgba(55,65,81,.7);letter-spacing:.5px;text-transform:uppercase">KPMG Financial Audit — ${d.label}</div>
      <div style="font-size:13px;font-weight:500;color:#374151;margin-top:2px">${d.sub}</div>`;
   document.getElementById('kpmg-check-rows').innerHTML=`<div class="kcard-main">
     <div style="font-size:10px;font-weight:600;color:rgba(55,65,81,.7);letter-spacing:.5px;text-transform:uppercase;margin-bottom:6px">
-      Mali Denetim Kriterleri
-      <span style="float:right;font-weight:400;color:var(--t4)">${done}/${d.items.length} doğrulandı</span>
+      Financial Audit Criteria
+      <span style="float:right;font-weight:400;color:var(--t4)">${done}/${d.items.length} verified</span>
     </div>
     <div class="kprog-bar"><div class="kprog-fill" style="width:${d.items.length?Math.round(done/d.items.length*100):0}%"></div></div>
     ${d.items.map((item,i)=>{const k=kk(curKP,i);const chk=getKC(k);
@@ -607,76 +602,74 @@ function renderKAudit(){
   const allDone=Object.keys(KPMG_AUDIT).reduce((a,ph)=>a+KPMG_AUDIT[ph].items.filter((_,i)=>getKC(kk(ph,i))).length,0);
   document.getElementById('kpmg-summary').innerHTML=
     `<span style="width:8px;height:8px;border-radius:50%;background:#374151;display:inline-block;margin-right:5px"></span>
-     Tum fazlar genelinde <b>${allDone}</b> / ${all} KPMG denetim kriteri doğrulandı`;
+     <b>${allDone}</b> of ${all} KPMG financial audit criteria verified across all phases`;
 }
-
 function selectKP(ph){curKP=ph;renderKAudit();}
 
 function renderCapaContent(){
-  const tabs=['bvqs','kpmg','shield'];
-  tabs.forEach(t=>{
+  ['bvqs','kpmg','shield'].forEach(t=>{
     const el=document.getElementById('cmtab-'+t);
-    if(el)el.className='capa-mtab'+(t===capaTab?' c-on-'+t:'');
+    if(!el)return;
+    el.className='capa-mtab'+(t===capaTab?' c-'+t:'');
   });
   if(capaTab==='shield'){
     const hdr=`<div class="shield-row-g">
-      <div class="shield-cell-g shield-hdr-g">Senaryo</div>
-      <div class="shield-cell-g shield-hdr-g">Kapsam</div>
-      <div class="shield-cell-g shield-hdr-g">Ust Sinir</div>
-      <div class="shield-cell-g shield-hdr-g">Odeyen</div>
+      <div class="shield-cell-g shield-hdr-g">Scenario</div>
+      <div class="shield-cell-g shield-hdr-g">Coverage</div>
+      <div class="shield-cell-g shield-hdr-g">Cap</div>
+      <div class="shield-cell-g shield-hdr-g">Paid by</div>
     </div>`;
     const rows=SHIELD_COV.map(r=>`<div class="shield-row-g">
-      <div class="shield-cell-g" style="font-weight:500;color:var(--t1)">${r.s}${r.n?`<div style="font-size:10.5px;color:var(--t4);margin-top:2px">${r.n}</div>`:''}</div>
-      <div class="shield-cell-g">${r.c?'<span class="yes-b">Kapsanıyor</span>':'<span class="no-b">Kapsam Dışı</span>'}</div>
+      <div class="shield-cell-g" style="font-weight:500;color:var(--t1)">${r.s}</div>
+      <div class="shield-cell-g">${r.c?'<span class="yes-b">Covered</span>':'<span class="no-b">Not covered</span>'}</div>
       <div class="shield-cell-g" style="font-weight:${r.c?500:400};color:${r.c?'var(--t1)':'var(--t4)'}">${r.cap}</div>
       <div class="shield-cell-g" style="color:${r.c?'var(--t2)':'var(--t4)'}">${r.p}</div>
     </div>`).join('');
     document.getElementById('capa-content').innerHTML=
-      `<div style="margin:8px 0 12px;padding:10px 12px;background:rgba(30,94,168,.07);border-radius:8px;border-left:3px solid #1e5ea8;border:0.5px solid rgba(30,94,168,.15)">
+      `<div style="margin:8px 0 12px;padding:10px 12px;background:rgba(30,94,168,.07);border-radius:8px;border:0.5px solid rgba(30,94,168,.15);border-left:3px solid #1e5ea8">
         <div style="font-size:12.5px;font-weight:500;color:#1e5ea8;margin-bottom:3px">Shield Protocol — Sanita Assurance System</div>
-        <div style="font-size:12px;color:var(--t2);line-height:1.6">Tum tedavi vakalarında aktif olan sigorta guvencesi. Komplikasyon, overbilling veya hizmet aksaklığı durumunda ek maliyet hastaya veya sisteme yansıtılmaz. 7.500 EUR ust sınırını aşan vakalar icin ayrı Mesleki Sorumluluk Sigortası devreye girer. Tum odemeler KPMG tarafından doğrulanır.</div>
+        <div style="font-size:12px;color:var(--t2);line-height:1.6">Active on every treatment case. In the event of complication, overbilling, or service failure, no additional cost is passed to the patient or the system. Cases exceeding EUR 7,500 are covered by a separate Professional Indemnity policy. All payments verified by KPMG.</div>
       </div>
-      <div class="shield-tbl">${hdr}${rows}</div>`;
+      <div class="shield-tbl">${hdr}${rows}</div>
+      <div style="margin-top:8px;font-size:11px;color:var(--t4)">Shield Protocol cap: EUR 7,500/case. A separate Professional Liability / Medical Indemnity Insurance policy applies for cases exceeding this threshold. All payments verified and released by KPMG.</div>`;
     return;
   }
-  const data=CAPA_LEVELS[capaTab];
+  const data=CAPA_DATA[capaTab];
   document.getElementById('capa-content').innerHTML=data.map((lv,li)=>{
     const key=capaTab+'_'+li;const isOpen=capaOpen[key];
     return `<div class="capa-level" style="border-color:${lv.border};background:${lv.bg}">
       <div class="capa-hdr" onclick="toggleCapaL('${key}')">
         <div>
-          <div style="font-size:13px;font-weight:500;color:${lv.color}">${lv.label}</div>
+          <div style="font-size:13px;font-weight:500;color:${lv.color}">${lv.level}</div>
           <div style="font-size:11px;color:var(--t3);margin-top:2px">${lv.trigger}</div>
         </div>
-        <div style="font-size:14px;color:${lv.color};flex-shrink:0">${isOpen?'▲':'▼'}</div>
+        <div style="font-size:14px;color:${lv.color};flex-shrink:0">${isOpen?'&#9650;':'&#9660;'}</div>
       </div>
       <div class="capa-body${isOpen?' open':''}">
         <div class="resp-grid">
-          <div class="resp-cell"><div class="resp-lbl">Tespit Eden</div><div style="font-size:11.5px;color:var(--t1)">${lv.detects}</div></div>
-          <div class="resp-cell"><div class="resp-lbl">Eskalasyon Zinciri</div><div style="font-size:11.5px;color:var(--t1)">${lv.escalates}</div></div>
-          <div class="resp-cell"><div class="resp-lbl">Sure</div><div style="font-size:11.5px;color:${lv.color};font-weight:500">${lv.timeline}</div></div>
+          <div class="resp-cell"><div class="resp-lbl">Detected by</div><div style="font-size:11.5px;color:var(--t1)">${lv.detects}</div></div>
+          <div class="resp-cell"><div class="resp-lbl">Escalation chain</div><div style="font-size:11.5px;color:var(--t1)">${lv.escalates}</div></div>
+          <div class="resp-cell"><div class="resp-lbl">Timeline</div><div style="font-size:11.5px;color:${lv.color};font-weight:500">${lv.timeline}</div></div>
         </div>
         <div style="margin-top:8px;padding:8px 10px;background:var(--bg2);border-radius:7px;border:0.5px solid var(--bd3)">
-          <div class="resp-lbl" style="margin-bottom:4px">Duzeltici Aksiyon</div>
+          <div class="resp-lbl" style="margin-bottom:4px">Corrective action</div>
           <div style="font-size:12px;color:var(--t2)">${lv.action}</div>
         </div>
         <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap">
           <div style="flex:1;min-width:150px;padding:8px 10px;background:var(--bg2);border-radius:7px;border:0.5px solid var(--bd3)">
-            <div class="resp-lbl" style="margin-bottom:4px">Hasta Koruması</div>
+            <div class="resp-lbl" style="margin-bottom:4px">Patient protection</div>
             <div style="font-size:12px;color:var(--t2)">${lv.patient}</div>
           </div>
           <div style="min-width:150px;padding:8px 10px;background:var(--bg2);border-radius:7px;border:0.5px solid var(--bd3)">
-            <div class="resp-lbl" style="margin-bottom:4px">Sigorta Tetikleyici</div>
+            <div class="resp-lbl" style="margin-bottom:4px">Insurance trigger</div>
             <div style="font-size:12px;color:var(--t2)">${lv.insurance}</div>
           </div>
         </div>
       </div>
     </div>`;}).join('');
 }
-
 function toggleCapaL(key){capaOpen[key]=!capaOpen[key];renderCapaContent();}
 function showCapaTab(t){capaTab=t;renderCapaContent();}
-
 renderKAudit();
 renderCapaContent();
 </script>
